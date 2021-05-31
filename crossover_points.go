@@ -1,7 +1,6 @@
 package genalgo
 
 import (
-	"log"
 	"math/rand"
 	"sort"
 )
@@ -21,7 +20,6 @@ type NPointCrossover struct {
 func (np *NPointCrossover) Cross(A, B BaseUnit) (C, D *BaseUnit) {
 	probability := np.ProbabilityFunc()
 
-	log.Print(probability, np.Probability)
 	if probability < np.Probability {
 
 		return &A, &B
@@ -39,7 +37,6 @@ func (np *NPointCrossover) Cross(A, B BaseUnit) (C, D *BaseUnit) {
 	}
 
 	sort.Ints(dots)
-	log.Print(dots)
 
 	cdot := 0
 
