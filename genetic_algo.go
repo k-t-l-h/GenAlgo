@@ -23,7 +23,7 @@ package genalgo
 
 type GenAlgo struct {
 	pSize        int
-	populaion    []BaseUnit
+	Populaion    []BaseUnit
 	reproduction []BaseUnit
 	totalFitness float64
 	iteration    int
@@ -56,7 +56,7 @@ func (ga *GenAlgo) nullPopulation() {
 		ga.totalFitness += f
 		population = append(population, p)
 	}
-	ga.populaion = population
+	ga.Populaion = population
 }
 
 func (ga *GenAlgo) Init(populationSize int) {
@@ -76,7 +76,7 @@ func (ga *GenAlgo) NextGeneration() {
 	//определить размер поколений
 	N := int(float64(ga.pSize) * ga.Crossover.GetSpeed())
 	for i := 0; i <= N; i += 2 {
-		A, B := ga.Select.Mater(ga.populaion)
+		A, B := ga.Select.Mater(ga.Populaion)
 		C, D := ga.Crossover.Cross(A, B)
 		C.SetFitness(ga.Fitness(*C))
 		D.SetFitness(ga.Fitness(*D))
@@ -85,8 +85,8 @@ func (ga *GenAlgo) NextGeneration() {
 
 	M := int(float64(ga.pSize) * ga.Mutate.GetSpeed())
 	for i := 0; i <= M; i += 2 {
-		A := ga.Select.Mutator(ga.populaion)
-		B := ga.Select.Mutator(ga.populaion)
+		A := ga.Select.Mutator(ga.Populaion)
+		B := ga.Select.Mutator(ga.Populaion)
 		C := ga.Mutate.Mutate(A)
 		D := ga.Mutate.Mutate(B)
 		C.SetFitness(ga.Fitness(C))
@@ -102,7 +102,7 @@ func (ga *GenAlgo) Simulation() {
 	for !ga.ExitOn() {
 		ga.OnBegin()
 		ga.NextGeneration()
-		ga.populaion = ga.Schema.Create(ga.populaion, ga.reproduction)
+		ga.Populaion = ga.Schema.Create(ga.Populaion, ga.reproduction)
 		ga.OnEnd()
 	}
 }
