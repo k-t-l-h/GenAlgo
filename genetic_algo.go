@@ -1,9 +1,5 @@
 package genalgo
 
-import (
-	"log"
-)
-
 //The main structure of the library
 //pSize is the size of a null population
 
@@ -41,6 +37,10 @@ type GenAlgo struct {
 
 	//оператор приспособленности
 	Fitness func(BaseUnit) float64
+	//что делается в начале каждой итерации
+	OnBegin func()
+	//что делается в конце каждой итерации
+	OnEnd func()
 }
 
 func (ga *GenAlgo) nullPopulation() {
@@ -70,7 +70,6 @@ func (ga *GenAlgo) ExitOn() bool {
 }
 
 func (ga *GenAlgo) NextGeneration() {
-
 	ga.iteration += 1
 
 	var repro []BaseUnit
@@ -101,10 +100,9 @@ func (ga *GenAlgo) NextGeneration() {
 func (ga *GenAlgo) Simulation() {
 
 	for !ga.ExitOn() {
-		log.Print("Поколение: ", ga.iteration)
+		ga.OnBegin()
 		ga.NextGeneration()
-
 		ga.populaion = ga.Schema.Create(ga.populaion, ga.reproduction)
-		log.Print("Лучшая особь: ", ga.populaion[0])
+		ga.OnEnd()
 	}
 }
