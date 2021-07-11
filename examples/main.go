@@ -1,7 +1,7 @@
 package main
 
 import (
-	genalg "github.com/k-t-l-h/GenAlgo"
+	genalg "github.com/k-t-l-h/GenAlgo/v2"
 	"golang.org/x/exp/rand"
 	"math"
 )
