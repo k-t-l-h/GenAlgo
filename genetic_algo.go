@@ -99,9 +99,13 @@ func (ga *GenAlgo) NextGeneration() {
 func (ga *GenAlgo) Simulation() {
 
 	for !ga.ExitOn() {
-		ga.OnBegin()
+		if ga.OnBegin != nil {
+			ga.OnBegin()
+		}
 		ga.NextGeneration()
 		ga.Populaion = ga.Schema.Create(ga.Populaion, ga.reproduction)
-		ga.OnEnd()
+		if ga.OnEnd != nil {
+			ga.OnEnd()
+		}
 	}
 }

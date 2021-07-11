@@ -1,8 +1,9 @@
 package main
 
 import (
+	"fmt"
 	genalg "github.com/k-t-l-h/GenAlgo/v2"
-	"golang.org/x/exp/rand"
+	rand "golang.org/x/exp/rand"
 	"math"
 )
 
@@ -21,7 +22,7 @@ func main() {
 			ProbabilityFunc: rand.Float64,
 		},
 		Schema: &genalg.Truncation{},
-		Fitness: func(unit genalg.BaseUnit) float64 {
+		Fitness: func(unit genalg.IUnit) float64 {
 			cr := unit.GetCromosomes()
 			fitness := 0.0
 			x := 0
@@ -40,7 +41,9 @@ func main() {
 		},
 		Select: &sel,
 	}
-	ga.OnBegin = func() {}
+	ga.OnBegin = func() {
+		fmt.Print(ga.Populaion[0])
+	}
 	ga.OnEnd = func() {}
 	ga.Init(20)
 	ga.Simulation()
