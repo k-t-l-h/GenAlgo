@@ -5,7 +5,7 @@ import (
 )
 
 type IMutate interface {
-	Mutate(individuals BaseUnit) (mutant BaseUnit)
+	Mutate(individuals IUnit) (mutant IUnit)
 	GetSpeed() float64
 }
 
@@ -15,7 +15,7 @@ type OneDotMutatation struct {
 	//TODO: добавить модуль
 }
 
-func (odm *OneDotMutatation) Mutate(parent BaseUnit) (child BaseUnit) {
+func (odm *OneDotMutatation) Mutate(parent IUnit) (child IUnit) {
 
 	/*check := odm.ProbabilityFunc()
 	if check < odm.Probability {
@@ -37,7 +37,7 @@ func (odm *OneDotMutatation) Mutate(parent BaseUnit) (child BaseUnit) {
 		cromo[r] = 0
 	}
 
-	child = BaseUnit{}
+	child = &BaseUnit{}
 
 	child.SetCromosomes(cromo)
 

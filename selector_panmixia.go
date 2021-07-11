@@ -7,7 +7,7 @@ import (
 type Panmixia struct {
 }
 
-func (s *Panmixia) Mater(population []BaseUnit) (A, B BaseUnit) {
+func (s *Panmixia) Mater(population []IUnit) (A, B IUnit) {
 	size := len(population)
 
 	i := rand.Intn(size)
@@ -16,7 +16,7 @@ func (s *Panmixia) Mater(population []BaseUnit) (A, B BaseUnit) {
 	return population[i], population[j]
 }
 
-func (s *Panmixia) Mutator(population []BaseUnit) (A BaseUnit) {
+func (s *Panmixia) Mutator(population []IUnit) (A IUnit) {
 	size := len(population)
 
 	i := rand.Intn(size)

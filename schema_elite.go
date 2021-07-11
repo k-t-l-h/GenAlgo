@@ -9,7 +9,7 @@ type Elite struct {
 
 }
 
-func (t *Elite) Create (parents, child []BaseUnit) (generation []BaseUnit)  {
+func (t *Elite) Create (parents, child []IUnit) (generation []IUnit)  {
 
 	sort.Sort(UnitSort(parents))
 	sort.Sort(UnitSort(child))
@@ -19,7 +19,7 @@ func (t *Elite) Create (parents, child []BaseUnit) (generation []BaseUnit)  {
 	size := len(parents)
 
 
-	var all []BaseUnit
+	var all []IUnit
 
 	all = append(all, elite)
 	all = append(all, child[size-1])

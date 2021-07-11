@@ -6,10 +6,10 @@ type Truncation struct {
 
 }
 
-func (t *Truncation) Create (parents, child []BaseUnit) (generation []BaseUnit)  {
+func (t *Truncation) Create (parents, child []IUnit) (generation []IUnit)  {
 	size := len(parents)
 
-	var all []BaseUnit
+	var all []IUnit
 
 	all = append(all, parents...)
 	all = append(all, child...)

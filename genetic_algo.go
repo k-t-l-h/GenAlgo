@@ -23,8 +23,8 @@ package genalgo
 
 type GenAlgo struct {
 	pSize        int
-	Populaion    []BaseUnit
-	reproduction []BaseUnit
+	Populaion    []IUnit
+	reproduction []IUnit
 	totalFitness float64
 	iteration    int
 	MaxIteration int
@@ -36,7 +36,7 @@ type GenAlgo struct {
 	Schema 	  ISchema
 
 	//оператор приспособленности
-	Fitness func(BaseUnit) float64
+	Fitness func(IUnit) float64
 	//что делается в начале каждой итерации
 	OnBegin func()
 	//что делается в конце каждой итерации
@@ -45,16 +45,15 @@ type GenAlgo struct {
 
 func (ga *GenAlgo) nullPopulation() {
 	ga.iteration = 0
-	//TODO: распараллелить
-	var population []BaseUnit
+	var population []IUnit
 	for i := 0; i < ga.pSize; i++ {
 		p := BaseUnit{}
 		cromo := ga.Generator.Generate()
 		p.SetCromosomes(cromo)
-		f := ga.Fitness(p)
+		f := ga.Fitness(&p)
 		p.SetFitness(f)
 		ga.totalFitness += f
-		population = append(population, p)
+		population = append(population, &p)
 	}
 	ga.Populaion = population
 }
@@ -72,15 +71,15 @@ func (ga *GenAlgo) ExitOn() bool {
 func (ga *GenAlgo) NextGeneration() {
 	ga.iteration += 1
 
-	var repro []BaseUnit
+	var repro []IUnit
 	//определить размер поколений
 	N := int(float64(ga.pSize) * ga.Crossover.GetSpeed())
 	for i := 0; i <= N; i += 2 {
 		A, B := ga.Select.Mater(ga.Populaion)
 		C, D := ga.Crossover.Cross(A, B)
-		C.SetFitness(ga.Fitness(*C))
-		D.SetFitness(ga.Fitness(*D))
-		repro = append(repro, *C, *D)
+		C.SetFitness(ga.Fitness(C))
+		D.SetFitness(ga.Fitness(D))
+		repro = append(repro, C, D)
 	}
 
 	M := int(float64(ga.pSize) * ga.Mutate.GetSpeed())

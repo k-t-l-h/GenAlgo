@@ -1,30 +1,30 @@
 package genalgo
 
 type ISelector interface {
-	Mater([]BaseUnit) (A, B BaseUnit)
-	Mutator([]BaseUnit) (A BaseUnit)
+	Mater([]IUnit) (A, B IUnit)
+	Mutator([]IUnit) (A IUnit)
 }
 
 //гены похожи
 type Inbreeding struct {
 }
 
-func (s *Inbreeding) Select() (A, B BaseUnit) {
-	return *(new(BaseUnit)), *(new(BaseUnit))
+func (s *Inbreeding) Select() (A, B IUnit) {
+	return *(new(IUnit)), *(new(IUnit))
 }
 
 //гены не похожи
 type Outbreeding struct {
 }
 
-func (s *Outbreeding) Select() (A, B BaseUnit) {
-	return *(new(BaseUnit)), *(new(BaseUnit))
+func (s *Outbreeding) Select() (A, B IUnit) {
+	return *(new(IUnit)), *(new(IUnit))
 }
 
 //функции приспособленности похожи
 type Associative struct {
 }
 
-func (s *Associative) Select() (A, B BaseUnit) {
-	return *(new(BaseUnit)), *(new(BaseUnit))
+func (s *Associative) Select() (A, B IUnit) {
+	return *(new(IUnit)), *(new(IUnit))
 }

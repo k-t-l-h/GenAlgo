@@ -14,7 +14,7 @@ func (uc *UniformCrossover) GetSpeed() float64 {
 	return uc.Probability
 }
 
-func (uc *UniformCrossover) Cross(A, B BaseUnit) (C, D *BaseUnit) {
+func (uc *UniformCrossover) Cross(A, B IUnit) (C, D IUnit) {
 
 	parentA := A.GetCromosomes()
 	parentB := B.GetCromosomes()

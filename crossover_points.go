@@ -17,12 +17,12 @@ type NPointCrossover struct {
 	ProbabilityFunc func() float64
 }
 
-func (np *NPointCrossover) Cross(A, B BaseUnit) (C, D *BaseUnit) {
+func (np *NPointCrossover) Cross(A, B IUnit) (C, D IUnit) {
 	probability := np.ProbabilityFunc()
 
 	if probability < np.Probability {
 
-		return &A, &B
+		return A, B
 	}
 
 	parentA := (A).GetCromosomes()

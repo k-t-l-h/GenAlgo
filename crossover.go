@@ -4,7 +4,7 @@ package genalgo
 //The Cross() function takes two parent units and returns two descendant units
 //Speed determines how many descendant units will be created
 type ICrossover interface {
-	Cross(A, B BaseUnit) (C, D *BaseUnit)
+	Cross(A, B IUnit) (C, D IUnit)
 	GetSpeed() float64
 }
 
